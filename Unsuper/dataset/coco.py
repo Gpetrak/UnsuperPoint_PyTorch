@@ -55,7 +55,7 @@ class COCODataset(BaseDataset):
     def init_dataset(self):
         self.name = 'coco'
         if self.is_training:
-            base_path = Path(self.config['train_path'], 'COCO/images/')
+            base_path = Path(self.config['train_path'], 'COCO/train2014/')
             image_paths = list(base_path.iterdir())
             image_paths = [str(p) for p in image_paths]
             np.random.shuffle(image_paths)
