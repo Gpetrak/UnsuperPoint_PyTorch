@@ -5,6 +5,15 @@ A pytorch version about unsuperpoint based on the following paper: https://arxiv
 https://github.com/RPFey/UnsuperPoint
 https://github.com/791136190/UnsuperPoint_PyTorch
 
+# How to install UnsuperPoint
+
+    pip install -r requirements.txt
+
+# How to train UnsuperPoint
+To train unsuperpoint run the following command:
+
+    python train.py --cfg_file Unsuper/configs/UnsuperPoint_coco.yaml --workers 4 --ckpt_save_interval 5
+
 # Notes
 The code implements the pytorch version of UnsuperPoint. Some of the parts  that cannot be successfully trained were modified. The actual test in the slam data set can reach to the effect of the orb.
 The implementation in the code is not completely consistent with the content of the paper. The paper uses the correlation coefficient of each bit of the descriptor to supervise the expression ability of the descriptor. The code directly uses the characteristics of the descriptors in different positions.
