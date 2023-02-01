@@ -1,7 +1,7 @@
 data:
-    train_name: 'COCODataset'
+    train_name: 'LunarDataset'
     train_path: './Data'
-    export_name: 'HPatch'
+    export_name: 'lunar'
     truncate: 1.0
     export_size: 320
     homographic:
@@ -12,7 +12,7 @@ data:
         scale: 0.2
         perspective: 0.2
     IMAGE_SHAPE: [240, 320]
-    batch_size: 128
+    batch_size: 32
 
 MODEL:
     name: 'UnsuperPoint'

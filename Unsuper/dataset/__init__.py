@@ -4,11 +4,13 @@ from .base_dataset import BaseDataset
 from .coco import COCODataset
 from torch.utils.data import DistributedSampler
 from .hpatch import HPatchDataset
+from .lunar import LunarDataset
 from ..utils.common_utils import get_dist_info
 
 __all__ = {
     'COCODataset': COCODataset,
-    'HPatch': HPatchDataset
+    'HPatch': HPatchDataset,
+    'LunarDataset': LunarDataset
 }
 
 def build_dataloader(dataset_cfg, batch_size, dist, root_path=None, workers=4,
