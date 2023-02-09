@@ -45,7 +45,7 @@ def eval_one_epoch(cfg, model, dataloader, epoch_id, logger, dist_test=False, re
     model.eval()
     iter_step = len(dataloader)
     dataloader_iter = iter(dataloader)
-    
+
     progress_bar = tqdm.tqdm(total=len(dataloader), leave=True, desc='eval', dynamic_ncols=True)
     for i in range(iter_step):
         try:
@@ -86,7 +86,8 @@ def eval_one_epoch(cfg, model, dataloader, epoch_id, logger, dist_test=False, re
             d1 = pred_dict[j]['d1'][loc]
             s1 = s1[loc]
             # np.savez(open(os.path.join(str(data_dir), img_name+'.ppm.Unsuper'+epoch_id), 'wb'), scores=s1, keypoints=p1, descriptors=d1, imsize=(h, w))
-            np.savez(open(os.path.join(str(data_dir), img_name + '.ppm.usp'), 'wb'), scores=s1, keypoints=p1, descriptors=d1, imsize=(w, h))
+            # np.savez(open(os.path.join(str(data_dir), img_name + '.ppm.usp'), 'wb'), scores=s1, keypoints=p1, descriptors=d1, imsize=(w, h))
+            np.savez(open(os.path.join(str(data_dir), img_name + '.npz'), 'wb'), scores=s1, keypoints=p1, descriptors=d1, imsize=(w, h))
 
         progress_bar.update()
 
@@ -180,4 +181,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

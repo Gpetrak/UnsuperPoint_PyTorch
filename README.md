@@ -14,6 +14,10 @@ To train unsuperpoint run the following command:
 
     python train.py --cfg_file Unsuper/configs/UnsuperPoint_coco.yaml --workers 4 --ckpt_save_interval 5
 
+# How to export Predictions with UnsuperPoint
+
+    python export.py --cfg_file Unsuper/configs/UnsuperPoint_coco.yaml --workers 4 --batch_size 16 --ckpt_dir output/ckpt --save_to_file
+
 # Notes
 The code implements the pytorch version of UnsuperPoint. Some of the parts  that cannot be successfully trained were modified. The actual test in the slam data set can reach to the effect of the orb.
 The implementation in the code is not completely consistent with the content of the paper. The paper uses the correlation coefficient of each bit of the descriptor to supervise the expression ability of the descriptor. The code directly uses the characteristics of the descriptors in different positions.

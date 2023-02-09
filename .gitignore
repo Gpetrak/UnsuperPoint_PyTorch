@@ -1,2 +1,6 @@
 *.pyc
+__pycache__
 output/*
+Data/*
+Unsuper/output/*
+Unsuper/__pycache__

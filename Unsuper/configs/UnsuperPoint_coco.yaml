@@ -1,7 +1,9 @@
 data:
+    # class in lunar.py
     train_name: 'LunarDataset'
     train_path: './Data'
-    export_name: 'lunar'
+    # symbolic linked folder in Data directory
+    export_name: 'lunar_dataset'
     truncate: 1.0
     export_size: 320
     homographic:
@@ -16,6 +18,7 @@ data:
 
 MODEL:
     name: 'UnsuperPoint'
+    base_model: 'ResNet'
     L2_norm: True
     OPTIMIZATION:
         name: 'sgd'

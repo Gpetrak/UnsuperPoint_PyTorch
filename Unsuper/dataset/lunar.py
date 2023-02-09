@@ -55,7 +55,7 @@ class LunarDataset(BaseDataset):
     def init_dataset(self):
         self.name = 'lunar'
         if self.is_training:
-            base_path = Path(self.config['train_path'], 'lunar/images/')
+            base_path = Path(self.config['train_path'], 'lunar_dataset')
             image_paths = list(base_path.iterdir())
             image_paths = [str(p) for p in image_paths]
             np.random.shuffle(image_paths)
@@ -66,11 +66,11 @@ class LunarDataset(BaseDataset):
                 image_paths = image_paths[:base]
             return len(image_paths), image_paths
         else:
-            base_path = Path(self.config['train_path'], 'lunar/images/')
+            base_path = Path(self.config['train_path'], 'lunar_dataset')
             image_paths = list(base_path.iterdir())
             test_files = [str(p) for p in image_paths][:self.config['export_size']]
             return self.config['export_size'], test_files
-    
+
     def __getitem__(self, index):
         img_file = self.train_files[index]
         img = cv2.imread(img_file)
@@ -139,7 +139,7 @@ class LunarDataset(BaseDataset):
         else:
             src_img = cv2.resize(img, (self.config['IMAGE_SHAPE'][1], self.config['IMAGE_SHAPE'][0]))
             return src_img, img_file
-        
+
 
     def collate_batch(*batches):
         src_img = []
@@ -153,7 +153,7 @@ class LunarDataset(BaseDataset):
         dst_img = torch.tensor(dst_img, dtype=torch.float32)  # B * H * W * C
         mat = torch.tensor(mat, dtype=torch.float32, requires_grad=False).squeeze()  # B * 3 * 3
         return src_img.permute(0, 3, 1, 2), dst_img.permute(0, 3, 1, 2), mat
-    
+
     def test_collate_batch(*batches):
         src_img = []
         img_idx = []
@@ -163,4 +163,3 @@ class LunarDataset(BaseDataset):
         src_img_tensor = torch.tensor(src_img, dtype=torch.float32)  # B * H * W * C
 
         return src_img, src_img_tensor.permute(0, 3, 1, 2), img_idx
-

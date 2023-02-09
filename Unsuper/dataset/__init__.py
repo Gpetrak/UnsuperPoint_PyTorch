@@ -1,3 +1,4 @@
+
 import torch
 from torch.utils.data import DataLoader
 from .base_dataset import BaseDataset
@@ -5,13 +6,14 @@ from .coco import COCODataset
 from torch.utils.data import DistributedSampler
 from .hpatch import HPatchDataset
 from .lunar import LunarDataset
-from ..utils.common_utils import get_dist_info
+from .lunar_hpatches import LunarHpatches
+from Unsuper.utils.common_utils import get_dist_info
 
 __all__ = {
-    'COCODataset': COCODataset,
-    'HPatch': HPatchDataset,
-    'LunarDataset': LunarDataset
-}
+        'COCODataset': COCODataset,
+        'HPatch': HPatchDataset,
+        'lunar_dataset': LunarDataset
+    }
 
 def build_dataloader(dataset_cfg, batch_size, dist, root_path=None, workers=4,
                      logger=None, training=True):
@@ -20,7 +22,7 @@ def build_dataloader(dataset_cfg, batch_size, dist, root_path=None, workers=4,
         dataset = __all__[dataset_cfg['train_name']](dataset_cfg, training)
     else:
         dataset = __all__[dataset_cfg['export_name']](dataset_cfg, training)
-        
+
     if dist:
         if training:
             sampler = torch.utils.data.distributed.DistributedSampler(dataset)
