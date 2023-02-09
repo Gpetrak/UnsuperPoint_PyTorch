@@ -20,6 +20,10 @@ To train unsuperpoint run the following command:
 
 Where in UnsuperPoint_coco.yaml file you have to define the "train_name" which is the class that manages the dataset preprocessing while in "export_name", the sym linked folder is defined.
 
+For HPatches dataset's style use the following command:
+
+    python export.py --cfg_file Unsuper/configs/UnsuperPoint_hpatches.yaml --workers 4 --batch_size 16 --ckpt_dir output/ckpt --save_to_file
+
 # Notes
 The code implements the pytorch version of UnsuperPoint. Some of the parts  that cannot be successfully trained were modified. The actual test in the slam data set can reach to the effect of the orb.
 The implementation in the code is not completely consistent with the content of the paper. The paper uses the correlation coefficient of each bit of the descriptor to supervise the expression ability of the descriptor. The code directly uses the characteristics of the descriptors in different positions.

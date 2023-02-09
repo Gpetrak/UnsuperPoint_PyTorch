@@ -17,7 +17,7 @@ class LunarHpatches(BaseDataset):
     dataset_folder = 'lunar_hpatches'
 
     def init_dataset(self):
-        self.name = 'hpatch'
+        self.name = 'lunar_hpatches'
         base_path = Path(DATA_PATH, self.dataset_folder)
         folders = list(base_path.iterdir())
         img_paths = []
@@ -27,26 +27,26 @@ class LunarHpatches(BaseDataset):
         data_len = len(img_paths)
         return data_len, img_paths
 
-    # def __getitem__(self, index):
-    #     if self.is_training:
-    #         raise NotImplementedError
-    #     else:
-    #         img_file = self.train_files[index]
-    #         img = cv2.imread(img_file)
-    #         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    #         new_h, new_w = self.config['IMAGE_SHAPE']
-    #         src_img = cv2.resize(img, (new_w, new_h))
-    #         return src_img, img_file
-    #
-    # def test_collate_batch(*batches):
-    #     img = []
-    #     img_idx = []
-    #     for batch in batches[1]:
-    #         img.append(batch[0])
-    #         img_idx.append(batch[1])
-    #     img_src = torch.tensor(img, dtype=torch.float32)
-    #
-    #     return img, img_src.permute(0, 3, 1, 2), img_idx
+    def __getitem__(self, index):
+        if self.is_training:
+            raise NotImplementedError
+        else:
+            img_file = self.train_files[index]
+            img = cv2.imread(img_file)
+            new_h, new_w = self.config['IMAGE_SHAPE']
+            src_img = cv2.resize(img, (new_w, new_h))
+            return src_img, img_file
+
+    def test_collate_batch(*batches):
+        img = []
+        img_idx = []
+        for batch in batches[1]:
+            img.append(batch[0])
+            img_idx.append(batch[1])
+        img_src = torch.tensor(img, dtype=torch.float32)
+
+        return img, img_src.permute(0, 3, 1, 2), img_idx
+    '''
     def __getitem__(self, index):
         img_file = self.train_files[index]
         img = cv2.imread(img_file)
@@ -85,3 +85,4 @@ class LunarHpatches(BaseDataset):
         dst_img = torch.tensor(dst_img, dtype=torch.float32)  # B * H * W * C
         mat = torch.tensor(mat, dtype=torch.float32, requires_grad=False).squeeze()  # B * 3 * 3
         return src_img.permute(0, 3, 1, 2), dst_img.permute(0, 3, 1, 2), mat, img_idx
+    '''

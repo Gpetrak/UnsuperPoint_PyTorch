@@ -12,7 +12,10 @@ from Unsuper.utils.common_utils import get_dist_info
 __all__ = {
         'COCODataset': COCODataset,
         'HPatch': HPatchDataset,
-        'lunar_dataset': LunarDataset
+        # dataset for training and predictions
+        'lunar_dataset': LunarDataset,
+        # dataset for evaluatoin
+        'lunar_hpatches': LunarHpatches
     }
 
 def build_dataloader(dataset_cfg, batch_size, dist, root_path=None, workers=4,
