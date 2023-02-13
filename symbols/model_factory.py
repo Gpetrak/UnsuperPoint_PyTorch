@@ -57,7 +57,7 @@ class UnsuperShortcut(nn.Module):
         out = torch.cat([layer1_down, layer2_down, layer3], axis=1)
 
         return out
-
+# Backbone proposed by paper
 class UnsuperVgg(nn.Module):
     def __init__(self,  **kwargs):
         super(UnsuperVgg, self).__init__(**kwargs)
@@ -71,7 +71,7 @@ class UnsuperVgg(nn.Module):
             nn.BatchNorm2d(32),
             nn.ReLU(inplace=True),
 
-            # nn.MaxPool2d(2, 2),
+            nn.MaxPool2d(2, 2),
 
             nn.Conv2d(32, 64, 3, 2, padding=1),
             nn.BatchNorm2d(64),
@@ -81,7 +81,7 @@ class UnsuperVgg(nn.Module):
             nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
 
-            # nn.MaxPool2d(2, 2),
+            nn.MaxPool2d(2, 2),
 
             nn.Conv2d(64, 128, 3, 1, padding=1),
             nn.BatchNorm2d(128),
@@ -91,7 +91,7 @@ class UnsuperVgg(nn.Module):
             nn.BatchNorm2d(128),
             nn.ReLU(inplace=True),
 
-            # nn.MaxPool2d(2, 2),
+            nn.MaxPool2d(2, 2),
 
             nn.Conv2d(128, 256, 3, 1, padding=1),
             nn.BatchNorm2d(256),
